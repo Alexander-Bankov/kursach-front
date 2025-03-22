@@ -1,0 +1,15 @@
+<!-- src/app/components/authorization-component/authorization.component.html -->
+<div>
+  <h2>Авторизация</h2>
+  <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" required>
+    </div>
+    <div>
+      <label for="password">Пароль:</label>
+      <input id="password" type="password" formControlName="password" required>
+    </div>
+    <button type="submit">Войти</button>
+  </form>
+</div>
