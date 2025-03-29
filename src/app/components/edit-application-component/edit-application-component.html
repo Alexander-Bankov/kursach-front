@@ -1,0 +1,26 @@
+<div class="edit-wrapper">
+  <form [formGroup]="applicationForm">
+    <div>
+      <label>Дата отправления</label>
+      <input type="datetime-local" formControlName="desiredDepartureDate">
+    </div>
+    <div>
+      <label>Дата получения</label>
+      <input type="datetime-local" formControlName="desiredDateOfReceipt">
+    </div>
+    <div>
+      <label>Точка отправления</label>
+      <input type="text" formControlName="desiredPointOfDeparture">
+    </div>
+    <div>
+      <label>Точка получения</label>
+      <input type="text" formControlName="desiredPointOfReceipt">
+    </div>
+    <div>
+      <label>Описание</label>
+      <textarea formControlName="description"></textarea>
+    </div>
+  </form>
+  <button (click)="save()">Сохранить</button>
+  <button (click)="goBack()">Назад</button>
+</div>

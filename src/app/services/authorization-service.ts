@@ -22,7 +22,7 @@ export class AuthorizationService {
             console.log('token -', response.accessToken);
             localStorage.setItem('accessToken', response.accessToken);
             console.log('Токен сохранен в localStorage:', localStorage.getItem('accessToken'));
-            this.router.navigate(['/applications']);
+            //this.router.navigate(['/applications']);
           }
         })
       );

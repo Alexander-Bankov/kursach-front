@@ -4,7 +4,8 @@ import { RegistrationComponent } from './components/registration-component/regis
 import { AuthorizationComponent } from './components/authorization-component/authorization';
 import { HomeComponent } from './components/home-component/home.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { ApplicationListComponent } from './components/application/application'; // Импортируем новый компонент
+import { ApplicationListComponent } from './components/application-list-component/application-list-component';
+import { ApplicationEditComponent } from './components/edit-application-component/edit-application-component';
 
 
 export const routes: Routes = [
@@ -12,7 +13,9 @@ export const routes: Routes = [
   { path: 'login', component: AuthorizationComponent },
   { path: 'home', component: HomeComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'applications', component: ApplicationListComponent }, // Добавляем маршрут для ApplicationListComponent
+  { path: 'applications', component: ApplicationListComponent },
+  { path: 'applications/edit/:id', component: ApplicationEditComponent }, // Редактирование существующей заявки
+  { path: 'applications/new', component: ApplicationEditComponent }, // Создание новой заявки
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Перенаправление на страницу входа по умолчанию
   // другие маршруты
 ];

@@ -5,15 +5,15 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './services/AuthIntercepter'; // Укажите правильный путь к вашему интерцептору
-
-
-// Импортируйте компоненты
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './components/registration-component/registration';
 import { HomeComponent } from './components/home-component/home.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AuthorizationComponent } from './components/authorization-component/authorization';
-import { ApplicationListComponent } from './components/application/application';
+import { ApplicationListComponent } from './components/application-list-component/application-list-component';
+import { ApplicationComponent } from './components/application-component/application-component';
+import { ApplicationEditComponent } from './components/edit-application-component/edit-application-component';
+
 
 
 @NgModule({
@@ -23,7 +23,9 @@ import { ApplicationListComponent } from './components/application/application';
     HomeComponent,
     AdminComponent,
     AuthorizationComponent, // Добавьте его в объявления
-    ApplicationListComponent
+    ApplicationListComponent,
+    ApplicationComponent,
+    ApplicationEditComponent
   ],
   imports: [
     BrowserModule,

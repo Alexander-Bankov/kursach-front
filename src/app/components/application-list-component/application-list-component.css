@@ -1,0 +1,75 @@
+#container-for-projects {
+  margin: 5px;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 15px 15px 15px;
+}
+
+#header input {
+  margin-right: 10px;
+}
+
+#header img {
+  width: 25px;
+}
+
+#addNewProjectAction {
+  background: #acacac;
+  border: 1px black solid;
+  color: white;
+  border-radius: 5px;
+  margin: 10x 15px 10px 15px;
+  padding: 5px 10px;
+}
+
+#addNewProjectAction img {
+  filter: drop-shadow(1px);
+}
+
+@media screen and (width < 500px) {
+  #header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #header h1 {
+    margin-bottom: 20px;
+  }
+
+  #header div {
+    margin-bottom: 10px;
+  }
+
+  #header input {
+    margin-bottom: 10px;
+  }
+
+  li {
+    padding-right: 0 !important;
+  }
+}
+
+#project-filter {
+  border: solid 1px black;
+}
+.applications-container {
+  display: flex;                /* Используем Flexbox для размещения элементов */
+  flex-wrap: wrap;             /* Позволяет карточкам переноситься на следующую строку */
+  gap: 20px;                   /* Отступы между карточками */
+}
+
+.application-card {
+  border: 1px solid #ccc;      /* Граница вокруг карточки */
+  border-radius: 5px;          /* Округление углов */
+  padding: 20px;               /* Отступы внутри карточки */
+  flex: 0 1 calc(33.333% - 20px); /* Устанавливаем ширину карточек (три карточки в строке) */
+  height: 10cm;                /* Фиксированная высота карточки */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта подъема */
+  background-color: #f9f9f9;   /* Цвет фона карточки */
+}
