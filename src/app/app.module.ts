@@ -13,7 +13,9 @@ import { AuthorizationComponent } from './components/authorization-component/aut
 import { ApplicationListComponent } from './components/application-list-component/application-list-component';
 import { ApplicationComponent } from './components/application-component/application-component';
 import { ApplicationEditComponent } from './components/edit-application-component/edit-application-component';
-
+import { CargoComponent } from './components/cargo-component/cargo-component';
+import { CargoListComponent } from './components/cargo-list-component/cargo-list-component';
+import {EditCargoComponent} from './components/edit-cargo-component/edit-cargo-component';
 
 
 @NgModule({
@@ -25,7 +27,10 @@ import { ApplicationEditComponent } from './components/edit-application-componen
     AuthorizationComponent, // Добавьте его в объявления
     ApplicationListComponent,
     ApplicationComponent,
-    ApplicationEditComponent
+    ApplicationEditComponent,
+    CargoComponent,
+    CargoListComponent,
+    EditCargoComponent
   ],
   imports: [
     BrowserModule,

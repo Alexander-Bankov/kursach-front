@@ -1,0 +1,26 @@
+<div id="application-info">
+  <h2>Информация о заявке</h2>
+  <p><strong>Идентификатор заявки:</strong> {{ application?.id }}</p>
+  <p><strong>Описание:</strong> {{ application?.description }}</p>
+</div>
+
+<hr>
+
+<div id="cargo-list-header">
+  <h3>Список грузов</h3>
+  <button (click)="createCargo()">Добавить груз</button>
+</div>
+
+<div *ngIf="cargos && cargos.length > 0" class="cargo-list">
+  <div *ngFor="let cargo of cargos" class="cargo-card">
+    <p><strong>Вес:</strong> {{ cargo.weight }} кг</p>
+    <p><strong>Размеры:</strong> {{ cargo.length }} x {{ cargo.width }} x {{ cargo.height }} м</p>
+    <p><strong>Содержимое:</strong> {{ cargo.content }}</p>
+    <button (click)="editCargo(cargo)">Редактировать</button>
+    <button (click)="deleteCargo(cargo.cargoId)">Удалить</button>
+  </div>
+</div>
+
+<div *ngIf="cargos && cargos.length === 0">
+  <p>Список грузов пуст.</p>
+</div>

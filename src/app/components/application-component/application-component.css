@@ -1,4 +1,4 @@
-.project {
+application {
   border: solid 1px black;
   width: fit-content;
   padding: 5px;
@@ -7,12 +7,12 @@
   margin-bottom: 15px;
 }
 
-.project:hover {
+application:hover {
   box-shadow: 0px 0px 5px black;
   transition: 0.2s;
 }
 
-.update-project {
+.update-application {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -24,13 +24,13 @@
 }
 
 
-.update-project:hover {
+.update-application:hover {
   scale: 1.1;
   transition: 0.25s;
 }
 
 @media screen and (width < 500px) {
-  .update-project {
+  .update-application {
     width: 50px;
   }
 }

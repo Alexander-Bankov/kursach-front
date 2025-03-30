@@ -1,0 +1,147 @@
+#main-cargo-list-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+
+#cargo-list-header p {
+  font-size: 20pt;
+  font-weight: 600;
+}
+
+#cargo-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#cargo-list-container li {
+  width: 350px;
+}
+
+#goBackBtn {
+  display: flex;
+  position: absolute;
+  top: 19px;
+  left: 15px;
+  width: 150px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 14pt;
+  border: solid 1px black;
+  border-radius: 5px;
+  background-color: aliceblue;
+  padding: 3px 5px;
+}
+
+
+#goBackBtn img {
+  width: 30px;
+}
+
+#task-list-empty {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  font-size: 14pt;
+}
+
+.subheader .second {
+  width: calc(100% - 20px);
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.subheader .first {
+  font-size: 14pt;
+  font-weight: 500;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  --bs-gutter-x: 0 !important;
+}
+
+#removeApplication {
+  width: 182px;
+  border-radius: 5px;
+  color: black;
+  background-color: red;
+  font-size: 14pt;
+  transition: 0.1s;
+  padding: 3px 5px 3px 5px;
+  margin-bottom: 10px;
+}
+
+#removeApplication:hover {
+  transition: 0.1s;
+  box-shadow: 0px 0px 5px black;
+}
+
+#handleAddCargo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#handleAddCargo button {
+  border-radius: 5px;
+  transition: 0.15s;
+}
+
+#handleAddCargo button:hover {
+  transition: 0.15s;
+  box-shadow: 0px 0px 3px black;
+}
+
+#task-list-header {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (width < 500px) {
+
+  #task-list-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 200px;
+  }
+
+  #goBackBtn {
+    position: relative !important;
+    left: 30%;
+    margin-bottom: 20px;
+  }
+
+
+}
+.cargo-container {
+  display: flex;                /* Используем Flexbox для размещения элементов */
+  flex-wrap: wrap;             /* Позволяет карточкам переноситься на следующую строку */
+  gap: 20px;                   /* Отступы между карточками */
+}
+
+.cargo-card {
+  border: 1px solid #ccc;      /* Граница вокруг карточки */
+  border-radius: 5px;          /* Округление углов */
+  padding: 20px;               /* Отступы внутри карточки */
+  flex: 0 1 calc(33.333% - 20px); /* Устанавливаем ширину карточек (три карточки в строке) */
+  height: 10cm;                /* Фиксированная высота карточки */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для эффекта подъема */
+  background-color: #f9f9f9;   /* Цвет фона карточки */
+}

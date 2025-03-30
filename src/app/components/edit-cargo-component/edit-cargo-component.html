@@ -1,0 +1,25 @@
+<div class="edit-cargo-container">
+  <h2>{{ cargoId ? 'Редактировать' : 'Добавить' }} груз</h2>
+
+  <form [formGroup]="cargoForm" (ngSubmit)="save()">
+    <label for="weight">Вес</label>
+    <input type="number" id="weight" formControlName="weight" />
+
+    <label for="length">Длина</label>
+    <input type="number" id="length" formControlName="length" />
+
+    <label for="width">Ширина</label>
+    <input type="number" id="width" formControlName="width" />
+
+    <label for="height">Высота</label>
+    <input type="number" id="height" formControlName="height" />
+
+    <label for="content">Содержимое</label>
+    <input type="text" id="content" formControlName="content" />
+
+    <div class="buttons">
+      <button type="submit" [disabled]="cargoForm.invalid">{{ cargoId ? 'Сохранить' : 'Добавить' }}</button>
+      <button type="button" (click)="goBack()">Отмена</button>
+    </div>
+  </form>
+</div>

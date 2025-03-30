@@ -1,0 +1,60 @@
+.task-wrapper {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  position: relative;
+  border: solid 1px black;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.task-header p {
+  font-size: 14pt;
+  font-weight: 600;
+  margin: 0px 0px 5px 7px !important;
+}
+.task-header s {
+  font-size: 14pt;
+  font-weight: 600;
+  margin: 0px 0px 5px 7px !important;
+}
+
+.task-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.indicator {
+  min-width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+
+.removeCargoBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: none;
+  background: none;
+}
+
+.removeCargoBtn img {
+  width: 100%;
+}
+
+@media screen and (width < 500px) {
+  .removeCargoBtn {
+    top: 10px;
+    width: 50px;
+  }
+}

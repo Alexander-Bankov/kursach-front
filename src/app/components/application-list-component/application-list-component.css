@@ -18,7 +18,7 @@
   width: 25px;
 }
 
-#addNewProjectAction {
+#addNewApplicationAction {
   background: #acacac;
   border: 1px black solid;
   color: white;
@@ -27,7 +27,7 @@
   padding: 5px 10px;
 }
 
-#addNewProjectAction img {
+#addNewApplicationAction img {
   filter: drop-shadow(1px);
 }
 
@@ -55,7 +55,7 @@
   }
 }
 
-#project-filter {
+#application-filter {
   border: solid 1px black;
 }
 .applications-container {
