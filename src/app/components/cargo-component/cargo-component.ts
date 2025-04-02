@@ -1,12 +1,17 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ShowApplicationDTO } from '../../interfaces/application.model';
 import { Router } from '@angular/router';
+import {CommonModule, DatePipe} from '@angular/common';
 
 @Component({
   selector: 'cargo-component',
   templateUrl: './cargo-component.html',
   styleUrls: ['./cargo-component.css'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    DatePipe
+  ]
 })
 export class CargoComponent {
   @Input() application: ShowApplicationDTO | undefined;

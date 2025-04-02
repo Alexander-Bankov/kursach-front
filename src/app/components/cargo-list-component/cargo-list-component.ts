@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CargoService } from '../../services/cargo.service';
 import { CargoShowDTO } from '../../interfaces/CargoShowDTO';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-cargo-list',
   templateUrl: './cargo-list-component.html',
   styleUrls: ['./cargo-list-component.css'],
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule] ,
 })
 export class CargoListComponent implements OnInit {
   application: any; // Информация о заявке

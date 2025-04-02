@@ -9,8 +9,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
-  //imports: [CommonModule] ,
-  standalone: false,
+  imports: [CommonModule] ,
+  standalone: true,
 })
 export class AdminComponent implements OnInit {
   adminData?: UserShowDTO;

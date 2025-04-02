@@ -28,8 +28,8 @@ export class AuthorizationService {
       );
   }
 
-  logout(): void {
-    localStorage.removeItem('accessToken'); // Удаляем токен при логауте
-    this.router.navigate(['/login']);
-  }
+  // logout(): void {
+  //   localStorage.removeItem('accessToken'); // Удаляем токен при логауте
+  //   this.router.navigate(['/login']);
+  // }
 }

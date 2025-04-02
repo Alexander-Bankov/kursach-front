@@ -1,12 +1,17 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ShowApplicationDTO } from '../../interfaces/application.model';
 import { Router } from '@angular/router';
+import {CommonModule, DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-application-component',
   templateUrl: './application-component.html',
   styleUrls: ['./application-component.css'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    DatePipe
+  ]
 })
 export class ApplicationComponent {
   @Input() application: ShowApplicationDTO | undefined;

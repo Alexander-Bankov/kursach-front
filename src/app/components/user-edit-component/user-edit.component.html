@@ -1,0 +1,18 @@
+<div class="user-edit">
+  <h2>Редактировать личную информацию</h2>
+  <form (ngSubmit)="updateUser()">
+    <label>
+      ФИО:
+      <input [(ngModel)]="userEditDTO.fullName" name="fullName" required>
+    </label>
+<!--    <label>-->
+<!--      Email:-->
+<!--      <input [(ngModel)]="userEditDTO.email" name="email" required>-->
+<!--    </label>-->
+    <label>
+      Телефон:ф
+      <input [(ngModel)]="userEditDTO.phoneNumber" name="phoneNumber" required>
+    </label>
+    <button type="submit">Сохранить изменения</button>
+  </form>
+</div>

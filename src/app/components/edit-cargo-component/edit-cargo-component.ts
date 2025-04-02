@@ -1,15 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { CargoService } from '../../services/cargo.service';
 import { CargoDTO } from '../../interfaces/CargoDTO';
 import { CargoShowDTO } from '../../interfaces/CargoShowDTO';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-edit-cargo',
   templateUrl: './edit-cargo-component.html',
   styleUrls: ['./edit-cargo-component.css'],
-  standalone: false,
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule
+  ]
 })
 export class EditCargoComponent implements OnInit {
   cargoForm: FormGroup;

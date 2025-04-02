@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { RegistrationService } from '../../services/registration-service';
 import { Router } from '@angular/router';
 import { Registration } from "../../interfaces/Registration";
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.html',
   styleUrls: ['./registration.css'],
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule] ,
 })
 export class RegistrationComponent {
   message: string = '';
