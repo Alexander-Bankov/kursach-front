@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
       () => {
         // Удаляем токен из localStorage
         localStorage.removeItem('accessToken'); // Удаление токена
+        localStorage.removeItem('role');
         this.router.navigate(['/login']); // Перенаправление на страницу логина
       },
       (error) => {

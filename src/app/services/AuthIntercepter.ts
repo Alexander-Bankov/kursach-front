@@ -19,9 +19,9 @@ export const authInterceptor: HttpInterceptorFn = (
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
-  // else {
-  //   console.warn('Токен не найден!'); // Если токен отсутствует
-  // }
+  else {
+    console.warn('Токен не найден!'); // Если токен отсутствует
+  }
 
   request = request.clone({
     setHeaders: headers

@@ -21,6 +21,7 @@ export class AuthorizationService {
           if (response.accessToken) {
             console.log('token -', response.accessToken);
             localStorage.setItem('accessToken', response.accessToken);
+            localStorage.setItem('role',response.role);
             console.log('Токен сохранен в localStorage:', localStorage.getItem('accessToken'));
             //this.router.navigate(['/applications']);
           }

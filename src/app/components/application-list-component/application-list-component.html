@@ -1,31 +1,38 @@
-<!--<div id="header">-->
-<!--  <h1>Заявки</h1>-->
-<!--  <button [routerLink]="['/applications/new']">Создать новую заявку →</button>-->
-<!--</div>-->
-<!--<hr>-->
-<!--<div class="row">-->
-<!--  <div *ngFor="let application of applications" class="col-md-4">-->
-<!--    <app-application-component [application]="application" (delete)="deleteApplication(application?.id)"></app-application-component>-->
-<!--  </div>-->
-<!--</div>-->
-<!--<div *ngIf="!applications.length">Список заявок пуст :(</div>-->
-<!--<hr>-->
 <div id="header">
   <h1>Заявки</h1>
   <button [routerLink]="['/applications/new']">Создать новую заявку →</button>
 </div>
 <hr>
+
+<!-- Поле поиска заявок по email -->
+<div *ngIf="isAdmin" class="search-container">
+  <!-- <label for="searchEmail">Найти заявки пользователя:</label> -->
+  <!-- <input id="searchEmail" type="text" [(ngModel)]="searchEmail" placeholder="Введите email пользователя"> -->
+  <!-- <button (click)="searchApplicationsByEmail()">Найти</button> -->
+</div>
+<hr>
+
 <div class="row">
   <div *ngFor="let application of applications" class="col-md-4">
     <div class="application-card">
       <app-application-component [application]="application" (delete)="deleteApplication(application?.id)"></app-application-component>
-      <p>{{ application.description }}</p>
       <button [routerLink]="['/applications', application.id, 'cargos']" [state]="{ application: application }">
         Перейти к грузам
+      </button>
+
+      <!-- Кнопка "Отклонить" -->
+      <button *ngIf="isAdmin && application.applicationStatus !== applicationStatus.REJECTED && application.applicationStatus !== applicationStatus.INVOICE_CREATED"
+              (click)="rejectApplication(application.id)">
+        Отклонить
+      </button>
+      <!-- Кнопка "Создать накладную" -->
+      <button *ngIf="isAdmin && application.applicationStatus != applicationStatus.INVOICE_CREATED && application.applicationStatus != applicationStatus.REJECTED"
+      (click)="createInvoice(application.id)">
+      Создать накладную
       </button>
     </div>
   </div>
 </div>
+
 <div *ngIf="!applications.length">Список заявок пуст :(</div>
 <hr>
-

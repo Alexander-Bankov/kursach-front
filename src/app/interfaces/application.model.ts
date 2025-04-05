@@ -5,9 +5,8 @@ export interface ShowApplicationDTO {
   desiredDateOfReceipt: string;
   desiredPointOfDeparture: string;
   desiredPointOfReceipt: string;
-  description: string;
-  application: ApplicationStatus; // Нужно определить этот интерфейс
-  status: ApplicationStatus; // Нужно определить этот интерфейс
+  description: string;// Нужно определить этот интерфейс
+  applicationStatus: ApplicationStatus; // Нужно определить этот интерфейс
 }
 
 export interface ApplicationDTO {
@@ -19,7 +18,8 @@ export interface ApplicationDTO {
 }
 
 export enum ApplicationStatus {
-  PENDING = "PENDING",
-  APPROVED = "APPROVED",
-  REJECTED = "REJECTED"
+  CREATE = 'CREATE',
+  REJECTED = 'REJECTED',
+  CONSIDERATION = 'НА CONSIDERATION',
+  INVOICE_CREATED = 'INVOICE_CREATED'
 }

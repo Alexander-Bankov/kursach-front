@@ -8,11 +8,16 @@ import { ShowApplicationDTO, ApplicationDTO } from '../interfaces/application.mo
 })
 export class ApplicationService {
   private baseUrl = 'http://localhost:8080/api/applications'; // укажите базовый URL вашего API
+  private baseUrl1 = 'http://localhost:8080/api/applications/for-user';
 
   constructor(private http: HttpClient) {}
 
   getAllApplications(): Observable<ShowApplicationDTO[]> {
     return this.http.get<ShowApplicationDTO[]>(this.baseUrl);
+  }
+
+  getAllApplicationsByUserId(): Observable<ShowApplicationDTO[]> {
+    return this.http.get<ShowApplicationDTO[]>(`${this.baseUrl}/user`);
   }
 
   getApplicationById(id: number): Observable<ShowApplicationDTO> {

@@ -16,4 +16,12 @@ export class AdminService {
   getPersonalAdminInfo(): Observable<UserShowDTO> {
     return this.http.get<UserShowDTO>(`${this.baseUrl}/get-personal-info`, { withCredentials: true });
   }
+  changeApplicationStatus(id: number, status: string): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/change-status-application/${id}/${status}`, {});
+  }
+
+  createInvoice(applicationid: number): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/create-invoice/${applicationid}`, {});
+  }
+
 }
