@@ -1,0 +1,11 @@
+<!-- invoice-component.html -->
+<div class="invoice">
+  <p>Дата создания: {{ invoice?.dateCreate }}</p>
+  <p>Описание: {{ invoice?.descriptionInvoice }}</p>
+  <p>Статус: {{ invoice?.status }}</p>
+  <p>Пользователь, подтвердивший: {{ invoice?.userConfirmed }}</p>
+  <p>Стоимость: {{ invoice?.cost }} рублей</p>
+  <p>Точка отправления: {{ invoice?.pointOfDeparture }}</p>
+  <p>Точка получения: {{ invoice?.pointOfReceipt }}</p>
+  <button (click)="onDelete()">Удалить</button>
+</div>

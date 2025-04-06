@@ -3,7 +3,7 @@
   <p>Точка отправления: {{ application?.desiredPointOfDeparture }}</p>
   <p>Точка получения: {{ application?.desiredPointOfReceipt }}</p>
   <p>Описание: {{ application?.description }}</p>
-  <p>Статус: {{ application?.status }}</p>
+  <p>Статус: {{ application?.applicationStatus  }}</p>
   <button (click)="onDelete()">Удалить</button>
   <button (click)="openApplicationEdit(application?.id)">Редактировать</button>
 </div>

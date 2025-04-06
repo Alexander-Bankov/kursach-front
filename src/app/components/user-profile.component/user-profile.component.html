@@ -2,9 +2,16 @@
   <div class="header">
     <h2>Персональная информация</h2>
     <div class="nav-buttons">
-      <button class="nav-button" (click)="goToApplications()">Мои заявки</button>
-      <button class="nav-button" (click)="goToCargos()">Мои заказы</button>
-      <button class="nav-button" (click)="goToEdit()">Редактировать данные</button> <!-- Добавлена кнопка редактирования -->
+      <button class="nav-button" (click)="goToApplications()">
+        {{ user?.role === 'ADMINISTRATOR' ? 'Просмотр заявок' : 'Мои заявки' }}
+      </button>
+      <button class="nav-button" (click)="goToCargos()">
+        {{ user?.role === 'ADMINISTRATOR' ? 'Просмотр заказов' : 'Мои заказы' }}
+      </button>
+      <button class="nav-button" (click)="goToEdit()">Редактировать данные</button>
+      <button class="nav-button" (click)="goToInvoices()">
+        {{ user?.role === 'ADMINISTRATOR' ? 'Просмотр накладных' : 'Мои накладные' }}
+      </button>
       <button class="logout-button" (click)="onLogout()">Выход</button>
     </div>
   </div>
@@ -14,5 +21,44 @@
     <p>Email: {{ user?.email }}</p>
     <p>Телефон: {{ user?.phoneNumber }}</p>
     <p>Роль: {{ translateRole(user?.role) }}</p>
+  </div>
+
+  <!-- Секция администратора -->
+  <div *ngIf="isAdmin" class="admin-section">
+    <h3>Управление пользователями</h3>
+    <button (click)="toggleAdminSection()">
+      {{ showAdminSection ? 'Скрыть' : 'Показать' }} управление пользователями
+    </button>
+
+    <div *ngIf="showAdminSection">
+      <div class="search-bar">
+        <input
+          type="text"
+          placeholder="Введите email для поиска"
+          [(ngModel)]="searchEmail"
+        />
+        <button (click)="searchUserByEmail()">Найти</button>
+      </div>
+
+      <button (click)="loadAllUsers()">Показать всех пользователей</button>
+
+      <div *ngIf="users.length > 0" class="user-list">
+        <h4>Список пользователей:</h4>
+        <ul>
+          <li *ngFor="let user of users">
+            <p>ФИО: {{ user.fullName }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Телефон: {{ user.phoneNumber }}</p>
+            <p>Роль: {{ translateRole(user.role) }}</p>
+            <button
+              *ngIf="user.role !== 'ADMINISTRATOR'"
+              (click)="changeRoleToAdmin(user.email)"
+            >
+              Сделать администратором
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

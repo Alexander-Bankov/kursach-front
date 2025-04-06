@@ -1,0 +1,32 @@
+.order {
+  border: 1px solid #ddd; /* Серый фон */
+  border-radius: 8px; /* Скругленные углы */
+  padding: 16px; /* Отступы внутри */
+  margin-bottom: 16px; /* Отступ снизу для разделения заказов */
+  background-color: #f9f9f9; /* Светлый фон */
+  transition: box-shadow 0.3s ease; /* Плавный переход для тени */
+}
+
+.order:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень при наведении */
+}
+
+.order p {
+  margin: 8px 0; /* Отступы между абзацами */
+  font-size: 16px; /* Размер шрифта */
+  color: #333; /* Темный цвет текста */
+}
+
+.order button {
+  background-color: #007bff; /* Цвет кнопки */
+  color: #fff; /* Цвет текста на кнопке */
+  border: none; /* Убираем рамку */
+  border-radius: 4px; /* Скругленные углы */
+  padding: 8px 12px; /* Отступы внутри кнопки */
+  cursor: pointer; /* Указатель при наведении */
+  transition: background-color 0.3s; /* Плавный переход цвета фона */
+}
+
+.order button:hover {
+  background-color: #0056b3; /* Темный цвет при наведении */
+}

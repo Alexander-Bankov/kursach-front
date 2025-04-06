@@ -8,7 +8,9 @@ import { ApplicationEditComponent } from './components/edit-application-componen
 import { CargoListComponent } from './components/cargo-list-component/cargo-list-component';
 import { EditCargoComponent } from './components/edit-cargo-component/edit-cargo-component';
 import { UserProfileComponent } from './components/user-profile.component/user-profile.component';
-import {UserEditComponent} from './components/user-edit-component/user-edit.component'; // Добавьте импорт
+import {UserEditComponent} from './components/user-edit-component/user-edit.component';
+import {InvoiceListComponent} from './components/invoice-list-component/invoice-list-component';
+import {OrderListComponent} from './components/order-list-component/order-list-component'; // Добавьте импорт
 
 export const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
@@ -23,6 +25,8 @@ export const routes: Routes = [
   { path: 'applications/:id/cargos/new', component: EditCargoComponent },
   { path: 'applications/:id/cargos/:cargoId/edit', component: EditCargoComponent },
   { path: 'profile', component: UserProfileComponent }, // Добавьте маршрут для профиля
-  { path: 'user-edit', component: UserEditComponent }
+  { path: 'user-edit', component: UserEditComponent },
+  { path: 'invoices', component: InvoiceListComponent },
+  { path: 'orders', component: OrderListComponent }
   // другие маршруты
 ];

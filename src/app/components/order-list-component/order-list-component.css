@@ -1,0 +1,37 @@
+#order-list-header {
+  padding: 16px;
+  background-color: #e9ecef; /* Светлый фон заголовка */
+  border-radius: 8px;
+  margin-bottom: 16px; /* Отступ снизу */
+}
+
+#order-list-header h2 {
+  margin: 0; /* Убираем отступы */
+  font-size: 24px; /* Размер шрифта заголовка */
+  color: #333; /* Темный цвет текста */
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column; /* Вертикальное размещение заказов */
+}
+
+.order-list p {
+  font-size: 16px; /* Размер шрифта для текста */
+  color: #333; /* Темный цвет текста */
+}
+
+.order-list button {
+  background-color: #28a745; /* Цвет кнопки добавления */
+  color: #fff; /* Цвет текста на кнопке */
+  border: none; /* Убираем рамку */
+  border-radius: 4px; /* Скругленные углы */
+  padding: 8px 12px; /* Отступы внутри кнопки */
+  cursor: pointer; /* Указатель при наведении */
+  transition: background-color 0.3s; /* Плавный переход цвета фона */
+  margin-top: 12px; /* Отступ сверху для кнопки добавления */
+}
+
+.order-list button:hover {
+  background-color: #218838; /* Темный цвет при наведении на кнопку добавления */
+}

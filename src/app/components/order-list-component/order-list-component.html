@@ -1,0 +1,16 @@
+<div id="order-list-header">
+  <h2>Список заказов</h2>
+<!--  <button (click)="createOrder()">Добавить заказ</button>-->
+</div>
+
+<div *ngIf="orders && orders.length > 0" class="order-list">
+  <order-component
+    *ngFor="let order of orders"
+    [order]="order"
+    (delete)="deleteOrder(order.id)">
+  </order-component>
+</div>
+
+<div *ngIf="orders && orders.length === 0">
+  <p>Список заказов пуст.</p>
+</div>

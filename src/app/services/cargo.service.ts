@@ -17,6 +17,11 @@ export class CargoService {
     return this.http.get<CargoShowDTO[]>(`${this.baseUrl}/application/${applicationId}`);
   }
 
+  // Получить груз по идентификатору
+  getCargoById(cargoId: number): Observable<CargoShowDTO> {
+    return this.http.get<CargoShowDTO>(`${this.baseUrl}/${cargoId}`);
+  }
+
   // Создать новый груз
   createCargo(cargo: CargoDTO): Observable<CargoShowDTO> {
     return this.http.post<CargoShowDTO>(this.baseUrl, cargo);
@@ -30,11 +35,6 @@ export class CargoService {
   // Удалить груз
   deleteCargo(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
-  }
-
-  // Получить груз по идентификатору
-  getCargoById(cargoId: number): Observable<CargoShowDTO> {
-    return this.http.get<CargoShowDTO>(`${this.baseUrl}/${cargoId}`);
   }
 
   // Получить груз по идентификатору заявки и идентификатору груза

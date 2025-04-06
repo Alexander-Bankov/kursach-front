@@ -1,0 +1,15 @@
+<!-- invoice-list-component.html -->
+<div id="invoice-list-header">
+  <h3>Список накладных</h3>
+<!--  <button (click)="createInvoice()">Добавить накладную</button>-->
+</div>
+
+<div *ngIf="invoices && invoices.length > 0" class="invoice-list">
+  <div *ngFor="let invoice of invoices" class="invoice-card">
+    <invoice-component [invoice]="invoice" (delete)="deleteInvoice(invoice.userConfirmed)"></invoice-component>
+  </div>
+</div>
+
+<div *ngIf="invoices && invoices.length === 0">
+  <p>Список накладных пуст.</p>
+</div>

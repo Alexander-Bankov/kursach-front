@@ -1,0 +1,49 @@
+#invoice-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+#invoice-list-header h3 {
+  font-size: 24px;
+  color: #333;
+}
+
+button {
+  background-color: #3498db; /* Синий */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9; /* Более темный синий при наведении */
+}
+
+.invoice-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.invoice-card {
+  margin: 10px 0;
+}
+
+.invoice-card:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  #invoice-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #invoice-list-header h3 {
+    margin-bottom: 10px;
+  }
+}

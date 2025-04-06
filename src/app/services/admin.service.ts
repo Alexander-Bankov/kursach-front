@@ -23,5 +23,27 @@ export class AdminService {
   createInvoice(applicationid: number): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/create-invoice/${applicationid}`, {});
   }
+  getAllUsers(): Observable<UserShowDTO[]> {
+    return this.http.get<UserShowDTO[]>(`${this.baseUrl}/get-all-user`, {
+      withCredentials: true,
+    });
+  }
+
+  // Найти пользователя по email
+  getUserByEmail(email: string): Observable<UserShowDTO[]> {
+    return this.http.get<UserShowDTO[]>(
+      `${this.baseUrl}/get-user-by-email?email=${email}`,
+      { withCredentials: true }
+    );
+  }
+
+  // Изменить роль пользователя на администратора
+  changeUserRoleToAdmin(email: string): Observable<void> {
+    return this.http.put<void>(
+      `${this.baseUrl}/change-role?email=${email}`,
+      {},
+      { withCredentials: true }
+    );
+  }
 
 }

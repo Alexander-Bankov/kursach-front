@@ -1,0 +1,6 @@
+<div class="order">
+  <p>Дата начала исполнения: {{ order?.dateStartExecution | date: 'dd/MM/yyyy HH:mm' }}</p>
+  <p>Дата завершения исполнения: {{ order?.endDateExecution | date: 'dd/MM/yyyy HH:mm' }}</p>
+  <p>Статус: {{ order?.status }}</p>
+  <button (click)="onDelete()">Удалить</button>
+</div>
