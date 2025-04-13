@@ -18,7 +18,7 @@
     <input type="text" id="content" formControlName="content" />
 
     <div class="buttons">
-      <button type="submit" [disabled]="cargoForm.invalid">{{ cargoId ? 'Сохранить' : 'Добавить' }}</button>
+      <button type="submit">{{ cargoId ? 'Сохранить' : 'Добавить' }}</button>
       <button type="button" (click)="goBack()">Отмена</button>
     </div>
   </form>

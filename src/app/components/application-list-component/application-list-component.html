@@ -6,11 +6,13 @@
 
 <!-- Поле поиска заявок по email -->
 <div *ngIf="isAdmin" class="search-container">
-  <!-- <label for="searchEmail">Найти заявки пользователя:</label> -->
-  <!-- <input id="searchEmail" type="text" [(ngModel)]="searchEmail" placeholder="Введите email пользователя"> -->
-  <!-- <button (click)="searchApplicationsByEmail()">Найти</button> -->
+  <!-- Search input can be added here -->
 </div>
 <hr>
+
+<div *ngIf="errorMessage" class="alert alert-danger">
+  {{ errorMessage }}
+</div>
 
 <div class="row">
   <div *ngFor="let application of applications" class="col-md-4">
@@ -27,8 +29,8 @@
       </button>
       <!-- Кнопка "Создать накладную" -->
       <button *ngIf="isAdmin && application.applicationStatus != applicationStatus.INVOICE_CREATED && application.applicationStatus != applicationStatus.REJECTED"
-      (click)="createInvoice(application.id)">
-      Создать накладную
+              (click)="createInvoice(application.id)">
+        Создать накладную
       </button>
     </div>
   </div>

@@ -22,7 +22,8 @@ import { FormsModule } from '@angular/forms';
 export class ApplicationListComponent implements OnInit {
   applications: ShowApplicationDTO[] = [];
   isAdmin: boolean = false;
-  applicationStatus = ApplicationStatus; // добавляем это
+  applicationStatus = ApplicationStatus;
+  errorMessage: string = ''; // Поле для хранения сообщения об ошибке
 
   constructor(private applicationService: ApplicationService,
               private adminService: AdminService,
@@ -41,6 +42,10 @@ export class ApplicationListComponent implements OnInit {
   loadApplications() {
     this.applicationService.getAllApplicationsByUserId().subscribe(data => {
       this.applications = data;
+      this.errorMessage = ''; // Сбрасываем сообщение об ошибке при загрузке заявок
+    }, error => {
+      this.errorMessage = 'Ошибка при загрузке заявок.';
+      console.error('Error loading applications:', error);
     });
   }
 
@@ -48,6 +53,8 @@ export class ApplicationListComponent implements OnInit {
     if (id !== undefined) {
       this.applicationService.deleteApplication(id).subscribe(() => {
         this.loadApplications();
+      }, error => {
+        console.error('Error deleting application:', error);
       });
     } else {
       console.error('ID is undefined. Cannot delete application.');
@@ -64,11 +71,19 @@ export class ApplicationListComponent implements OnInit {
     }
   }
 
+
   createInvoice(applicationId: number) {
     this.adminService.createInvoice(applicationId).subscribe(() => {
       console.log(`Invoice created for application ID: ${applicationId}`);
+      this.errorMessage = ''; // Сбрасываем сообщение об ошибке при успехе
     }, error => {
-      console.error('Error creating invoice:', error);
+      if (error.status === 400) {
+        this.errorMessage = error.error; // Теперь это сообщение об ошибке сервера
+        alert(error.error);
+      } else {
+        console.error('Error creating invoice:', error);
+        this.errorMessage = 'Произошла ошибка при создании накладной. Попробуйте еще раз.';
+      }
     });
   }
 }

@@ -1,26 +1,77 @@
-<div class="edit-wrapper">
-  <form [formGroup]="applicationForm">
+<!--<div>-->
+<!--  <h2>Редактирование заявки</h2>-->
+<!--  <form [formGroup]="applicationForm" (ngSubmit)="save()">-->
+<!--    <div>-->
+<!--      <label>Дата отправления</label>-->
+<!--      <input type="datetime-local" formControlName="desiredDepartureDate">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label>Дата получения</label>-->
+<!--      <input type="datetime-local" formControlName="desiredDateOfReceipt">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label for="desiredPointOfDeparture">Пункт отправления:</label>-->
+<!--      <input id="desiredPointOfDeparture" formControlName="desiredPointOfDeparture" readonly style="width: 15cm;" />-->
+<!--      <button type="button" (click)="openMap('departure')">Выбрать на карте</button>-->
+<!--      <button type="button" (click)="savePoint()">Сохранить пункт</button>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label for="desiredPointOfReceipt">Пункт получения:</label>-->
+<!--      <input id="desiredPointOfReceipt" formControlName="desiredPointOfReceipt" readonly style="width: 15cm;" />-->
+<!--      <button type="button" (click)="openMap('receipt')">Выбрать на карте</button>-->
+<!--      <button type="button" (click)="savePoint()">Сохранить пункт</button>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label for="description">Описание:</label>-->
+<!--      <textarea id="description" formControlName="description"></textarea>-->
+<!--    </div>-->
+<!--    <button type="button" (click)="calculateDistance()">Рассчитать расстояние</button>-->
+<!--    <div>-->
+<!--      <label>Расстояние:</label>-->
+<!--      <span>{{ distance }} км</span>-->
+<!--    </div>-->
+<!--    <button type="submit">Сохранить</button>-->
+<!--    <button type="button" (click)="goBack()">Назад</button>-->
+<!--  </form>-->
+
+<!--  <div *ngIf="isMapVisible" id="map" style="width: 100%; height: 400px;"></div>-->
+<!--</div>-->
+
+<div>
+  <h2>Редактирование заявки</h2>
+  <form [formGroup]="applicationForm" (ngSubmit)="save()">
     <div>
       <label>Дата отправления</label>
-      <input type="datetime-local" formControlName="desiredDepartureDate">
+      <input type="datetime-local" formControlName="desiredDepartureDate" (change)="updateReceiptDate()">
     </div>
     <div>
       <label>Дата получения</label>
-      <input type="datetime-local" formControlName="desiredDateOfReceipt">
+      <input type="datetime-local" formControlName="desiredDateOfReceipt" readonly>
     </div>
     <div>
-      <label>Точка отправления</label>
-      <input type="text" formControlName="desiredPointOfDeparture">
+      <label for="desiredPointOfDeparture">Пункт отправления:</label>
+      <input id="desiredPointOfDeparture" formControlName="desiredPointOfDeparture" readonly style="width: 15cm;" />
+      <button type="button" (click)="openMap('departure')">Выбрать на карте</button>
+            <button type="button" (click)="savePoint()">Сохранить пункт</button>
     </div>
     <div>
-      <label>Точка получения</label>
-      <input type="text" formControlName="desiredPointOfReceipt">
+      <label for="desiredPointOfReceipt">Пункт получения:</label>
+      <input id="desiredPointOfReceipt" formControlName="desiredPointOfReceipt" readonly style="width: 15cm;" />
+      <button type="button" (click)="openMap('receipt')">Выбрать на карте</button>
+            <button type="button" (click)="savePoint()">Сохранить пункт</button>
     </div>
     <div>
-      <label>Описание</label>
-      <textarea formControlName="description"></textarea>
+      <label for="description">Описание:</label>
+      <textarea id="description" formControlName="description"></textarea>
     </div>
+    <button type="button" (click)="calculateDistance()">Рассчитать расстояние</button>
+    <div>
+      <label>Расстояние:</label>
+      <span>{{ distance }} км</span>
+    </div>
+    <button type="submit">Сохранить</button>
+    <button type="button" (click)="goBack()">Назад</button>
   </form>
-  <button (click)="save()">Сохранить</button>
-  <button (click)="goBack()">Назад</button>
+
+  <div *ngIf="isMapVisible" id="map" style="width: 100%; height: 400px;"></div>
 </div>

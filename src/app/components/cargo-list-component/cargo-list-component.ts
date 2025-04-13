@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CargoService } from '../../services/cargo.service';
 import { CargoShowDTO } from '../../interfaces/CargoShowDTO';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cargo-list',
   templateUrl: './cargo-list-component.html',
   styleUrls: ['./cargo-list-component.css'],
   standalone: true,
-  imports: [CommonModule] ,
+  imports: [CommonModule],
 })
 export class CargoListComponent implements OnInit {
   application: any; // Информация о заявке
@@ -51,20 +51,18 @@ export class CargoListComponent implements OnInit {
     });
   }
 
-  // Метод для создания нового груза
   createCargo(): void {
-    // Переход к компоненту редактирования с указанием applicationId
-    this.router.navigate([`/applications/${this.application.id}/cargos/new`], {
-      state: { applicationId: this.application.id } // передаем applicationId через состояние
+    this.router.navigate([`/applications/${this.application.id}/cargos/new`],{
+      state: { applicationId: this.application.id } // Передаем applicationId в состояние
+  });
+  }
+
+  editCargo(cargo: CargoShowDTO): void {
+    this.router.navigate([`/applications/${this.application.id}/cargos/${cargo.cargoId}/edit`], {
+      state: { applicationId: this.application.id } // Передаем applicationId в состояние
     });
   }
 
-  // Метод для редактирования груза
-  editCargo(cargo: CargoShowDTO): void {
-    this.router.navigate([`/applications/${this.application.id}/cargos/${cargo.cargoId}/edit`]);
-  }
-
-  // Метод для удаления груза
   deleteCargo(cargoId: number): void {
     if (confirm('Вы уверены, что хотите удалить этот груз?')) {
       this.cargoService.deleteCargo(cargoId).subscribe({

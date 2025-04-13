@@ -7,6 +7,7 @@ export interface ShowApplicationDTO {
   desiredPointOfReceipt: string;
   description: string;// Нужно определить этот интерфейс
   applicationStatus: ApplicationStatus; // Нужно определить этот интерфейс
+  distance: number;
 }
 
 export interface ApplicationDTO {
@@ -15,6 +16,7 @@ export interface ApplicationDTO {
   desiredPointOfDeparture: string;
   desiredPointOfReceipt: string;
   description: string;
+  distance: number;
 }
 
 export enum ApplicationStatus {

@@ -1,8 +1,8 @@
-// invoice.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { InvoiceShowDTO } from '../../interfaces/InvoiceShowDTO';
 import { InvoiceService } from '../../services/invoice.service';
-import {CommonModule, DatePipe} from '@angular/common';
+import { AdminService } from '../../services/admin.service'; // Импортируем AdminService
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'invoice-component',
@@ -17,11 +17,52 @@ export class InvoiceComponent {
   @Input() invoice: InvoiceShowDTO | undefined;
   @Output() delete = new EventEmitter<number>();
 
-  constructor(private invoiceService: InvoiceService) {}
+  isAdmin: boolean = false;
+
+  constructor(private invoiceService: InvoiceService, private adminService: AdminService) {
+    this.checkUserRole(); // Проверяем роль пользователя
+  }
+
+  checkUserRole() {
+    const role = localStorage.getItem('role');
+    this.isAdmin = role === 'ADMINISTRATOR';
+  }
 
   onDelete() {
     if (this.invoice) {
       this.delete.emit(this.invoice.invoiceId);
+    }
+  }
+
+  onConfirmInvoice() {
+    if (this.invoice) {
+      console.log('Подтверждение накладной с ID:', this.invoice.invoiceId); // Лог для отладки
+      this.adminService.confirmedInvoice(this.invoice.invoiceId).subscribe({
+        next: () => {
+          alert('Накладная подтверждена!');
+        },
+        error: () => {
+          alert('Ошибка подтверждения накладной!');
+        }
+      });
+    } else {
+      console.error('Ошибка: invoice не определен.'); // Лог для отладки
+    }
+  }
+
+  onChangeCost() {
+    if (this.invoice) {
+      console.log('Изменение стоимости накладной с ID:', this.invoice.invoiceId); // Лог для отладки
+      this.adminService.changeCostInvoice(this.invoice.invoiceId).subscribe({
+        next: () => {
+          alert('Стоимость накладной изменена!');
+        },
+        error: () => {
+          alert('Ошибка при изменении стоимости накладной!');
+        }
+      });
+    } else {
+      console.error('Ошибка: invoice не определен.'); // Лог для отладки
     }
   }
 }

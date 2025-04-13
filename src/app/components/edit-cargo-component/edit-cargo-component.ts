@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CargoService } from '../../services/cargo.service';
 import { CargoDTO } from '../../interfaces/CargoDTO';
 import { CargoShowDTO } from '../../interfaces/CargoShowDTO';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-edit-cargo',
@@ -19,6 +19,7 @@ import {CommonModule} from '@angular/common';
 export class EditCargoComponent implements OnInit {
   cargoForm: FormGroup;
   cargoId: number | null = null;
+ applicationId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -37,23 +38,23 @@ export class EditCargoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Получаем applicationId из состояния, если он существует
+    // Проверяем, есть ли переданное состояние
     const navigation = this.router.getCurrentNavigation();
-    if (navigation && navigation.extras && navigation.extras.state) {
+    if (navigation?.extras?.state) {
       const state = navigation.extras.state as { applicationId: number };
       if (state.applicationId) {
-        this.cargoForm.get('applicationId')?.setValue(state.applicationId); // Устанавливаем applicationId
+        this.cargoForm.get('applicationId')?.setValue(state.applicationId); // Устанавливаем applicationId из состояния
       }
     }
 
     this.route.params.subscribe(params => {
       this.cargoId = params['cargoId'];
       if (this.cargoId) {
-        // Если есть cargoId, загружаем данные для редактирования
         this.loadCargo(this.cargoId);
       }
     });
   }
+
   loadCargo(id: number): void {
     this.cargoService.getCargoById(id).subscribe({
       next: (cargo: CargoShowDTO) => {
@@ -74,15 +75,22 @@ export class EditCargoComponent implements OnInit {
 
   save(): void {
     const cargo: CargoDTO = this.cargoForm.value;
-    const applicationId = cargo.applicationId; // Получаем идентификатор заявки из формы
+
+    this.route.params.subscribe(params => {
+      this.applicationId = params['id'];
+    });
+
+    console.log(this.applicationId);
+    const apid = this.applicationId
+    if (this.applicationId != null) {
+      cargo.applicationId = this.applicationId;
+    }
 
     if (this.cargoId) {
       this.cargoService.updateCargo(this.cargoId, cargo).subscribe({
         next: () => {
           alert('Груз успешно обновлен!');
-          this.router.navigate([`/applications/${applicationId}/cargos`], {
-            state: { application: { id: applicationId } } // Переходим на список грузов с правильным applicationId
-          });
+          this.router.navigate([`/applications/${apid}/cargos`]);
         },
         error: () => {
           alert('Ошибка обновления груза!');
@@ -91,10 +99,8 @@ export class EditCargoComponent implements OnInit {
     } else {
       this.cargoService.createCargo(cargo).subscribe({
         next: () => {
-          alert('Груз успешно добавлен!');
-          this.router.navigate([`/applications/${applicationId}/cargos`], {
-            state: { application: { id: applicationId } } // Переходим на список грузов с правильным applicationId
-          });
+          alert('Груз успешно создан!');
+          this.router.navigate([`/applications/${apid}/cargos`]);
         },
         error: () => {
           alert('Ошибка создания груза!');
@@ -104,6 +110,11 @@ export class EditCargoComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate([`/applications/${this.cargoForm.get('applicationId')?.value}/cargos`]);
+    const applicationId = this.cargoForm.get('applicationId')?.value; // Получаем applicationId из формы
+    if (applicationId) {
+      this.router.navigate([`/applications/${this.applicationId}/cargos`]); // Переходим на страницу списка грузов с правильным applicationId
+    } else {
+      alert('Идентификатор приложения не найден!');
+    }
   }
 }

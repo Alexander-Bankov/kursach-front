@@ -8,7 +8,7 @@ import { AuthorizationService } from './services/authorization-service';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withHashLocation()),
+    provideRouter(routes),
     provideHttpClient(
       withInterceptors([authInterceptor]) // Используем интерцептор
     ),

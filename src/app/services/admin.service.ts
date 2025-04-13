@@ -46,4 +46,14 @@ export class AdminService {
     );
   }
 
+  // Метод для подтверждения накладной
+  confirmedInvoice(id: number): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/confirmed-invoice/${id}`, {});
+  }
+
+  // Метод для изменения стоимости накладной
+  changeCostInvoice(id: number): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/change-cost-invoice/${id}`, {});
+  }
+
 }

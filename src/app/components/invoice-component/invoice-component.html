@@ -1,5 +1,6 @@
-<!-- invoice-component.html -->
 <div class="invoice">
+  <p><strong>Идентификатор накладной:</strong> {{ invoice?.invoiceId}}</p>
+  <p><strong>Идентификатор заявки, для которой эта накладная:</strong> {{ invoice?.applicationId}}</p>
   <p>Дата создания: {{ invoice?.dateCreate }}</p>
   <p>Описание: {{ invoice?.descriptionInvoice }}</p>
   <p>Статус: {{ invoice?.status }}</p>
@@ -8,4 +9,8 @@
   <p>Точка отправления: {{ invoice?.pointOfDeparture }}</p>
   <p>Точка получения: {{ invoice?.pointOfReceipt }}</p>
   <button (click)="onDelete()">Удалить</button>
+
+  <!-- Кнопки для администраторов -->
+  <button *ngIf="isAdmin && invoice?.cost === null" (click)="onChangeCost()">Рассчитать накладную</button>
+  <button *ngIf="isAdmin && !invoice?.userConfirmed" (click)="onConfirmInvoice()">Подтвердить накладную</button>
 </div>

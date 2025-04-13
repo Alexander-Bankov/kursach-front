@@ -1,9 +1,8 @@
-// invoice-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { InvoiceService } from '../../services/invoice.service';
 import { InvoiceShowDTO } from '../../interfaces/InvoiceShowDTO';
-import {InvoiceComponent} from '../invoice-component/invoice-component';
-import {CommonModule} from '@angular/common';
+import { InvoiceComponent } from '../invoice-component/invoice-component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-invoice-list',
