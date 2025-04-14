@@ -26,7 +26,7 @@ export class ApplicationComponent {
   }
   openApplicationEdit(id: number | undefined) {
     if (id !== undefined) {
-      this.router.navigate(['/applications/edit', id]); // Переходим на страницу редактирования
+       this.router.navigate(['/applications/edit', id]); // Переходим на страницу редактирования
     }
   }
 }

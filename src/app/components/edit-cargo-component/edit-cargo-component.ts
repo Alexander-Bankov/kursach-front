@@ -80,7 +80,7 @@ export class EditCargoComponent implements OnInit {
       this.applicationId = params['id'];
     });
 
-    console.log(this.applicationId);
+    console.log(this.applicationId,"test");
     const apid = this.applicationId
     if (this.applicationId != null) {
       cargo.applicationId = this.applicationId;
@@ -90,7 +90,9 @@ export class EditCargoComponent implements OnInit {
       this.cargoService.updateCargo(this.cargoId, cargo).subscribe({
         next: () => {
           alert('Груз успешно обновлен!');
-          this.router.navigate([`/applications/${apid}/cargos`]);
+          this.router.navigate([`/applications/${apid}/cargos`], {
+            state: { application: { id: apid } } // Передаем applicationId в состояние
+          });
         },
         error: () => {
           alert('Ошибка обновления груза!');
@@ -100,7 +102,9 @@ export class EditCargoComponent implements OnInit {
       this.cargoService.createCargo(cargo).subscribe({
         next: () => {
           alert('Груз успешно создан!');
-          this.router.navigate([`/applications/${apid}/cargos`]);
+          this.router.navigate([`/applications/${apid}/cargos`], {
+            state: { application: { id: apid } } // Передаем applicationId в состояние
+          });
         },
         error: () => {
           alert('Ошибка создания груза!');
@@ -110,9 +114,16 @@ export class EditCargoComponent implements OnInit {
   }
 
   goBack(): void {
-    const applicationId = this.cargoForm.get('applicationId')?.value; // Получаем applicationId из формы
-    if (applicationId) {
-      this.router.navigate([`/applications/${this.applicationId}/cargos`]); // Переходим на страницу списка грузов с правильным applicationId
+    this.route.params.subscribe(params => {
+      this.applicationId = params['id'];
+    });
+
+    console.log(this.applicationId,"test");
+    const apid = this.applicationId
+    if (this.applicationId) {
+      this.router.navigate([`/applications/${apid}/cargos`], {
+        state: { application: { id: apid } } // Передаем applicationId в состояние
+      });
     } else {
       alert('Идентификатор приложения не найден!');
     }

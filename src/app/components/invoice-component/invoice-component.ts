@@ -36,8 +36,8 @@ export class InvoiceComponent {
 
   onConfirmInvoice() {
     if (this.invoice) {
-      console.log('Подтверждение накладной с ID:', this.invoice.invoiceId); // Лог для отладки
-      this.adminService.confirmedInvoice(this.invoice.invoiceId).subscribe({
+      console.log('Подтверждение накладной с ID:', this.invoice.applicationId); // Лог для отладки
+      this.adminService.confirmedInvoice(this.invoice.applicationId).subscribe({
         next: () => {
           alert('Накладная подтверждена!');
         },
@@ -52,8 +52,8 @@ export class InvoiceComponent {
 
   onChangeCost() {
     if (this.invoice) {
-      console.log('Изменение стоимости накладной с ID:', this.invoice.invoiceId); // Лог для отладки
-      this.adminService.changeCostInvoice(this.invoice.invoiceId).subscribe({
+      console.log('Изменение стоимости накладной с ID:', this.invoice.applicationId); // Лог для отладки
+      this.adminService.changeCostInvoice(this.invoice.applicationId).subscribe({
         next: () => {
           alert('Стоимость накладной изменена!');
         },

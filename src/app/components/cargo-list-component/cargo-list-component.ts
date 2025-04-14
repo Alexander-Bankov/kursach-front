@@ -25,11 +25,13 @@ export class CargoListComponent implements OnInit {
     // Проверяем, содержится ли состояние
     if (history.state.application) {
       this.application = history.state.application; // Получаем данные о заявке из состояния
+      console.log("history state",history.state.application.id)
     } else {
       console.error('history.state.application is undefined');
     }
+    //console.log(application.id);
 
-    const applicationId = this.application?.id;
+    const applicationId = this.application.id;
 
     // Проверка на существование идентификатора заявки
     if (!applicationId) {
