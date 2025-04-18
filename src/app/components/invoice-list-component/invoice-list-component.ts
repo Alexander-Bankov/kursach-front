@@ -3,6 +3,7 @@ import { InvoiceService } from '../../services/invoice.service';
 import { InvoiceShowDTO } from '../../interfaces/InvoiceShowDTO';
 import { InvoiceComponent } from '../invoice-component/invoice-component';
 import { CommonModule } from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-invoice-list',
@@ -10,12 +11,14 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./invoice-list-component.css'],
   imports: [
     InvoiceComponent,
-    CommonModule
+    CommonModule,
+    RouterLink
   ],
   standalone: true
 })
 export class InvoiceListComponent implements OnInit {
   invoices: InvoiceShowDTO[] = []; // Массив накладных
+  isAdmin: boolean = false;
 
   constructor(private invoiceService: InvoiceService) {}
 
@@ -23,15 +26,32 @@ export class InvoiceListComponent implements OnInit {
     this.loadInvoices();
   }
 
+  checkUserRole() {
+    const role = localStorage.getItem('role');
+    this.isAdmin = role === 'ADMINISTRATOR';
+  }
+
   loadInvoices(): void {
-    this.invoiceService.getAllInvoices().subscribe({
-      next: (data) => {
-        this.invoices = data; // Загружаем список накладных
-      },
-      error: () => {
-        alert('Ошибка загрузки накладных!');
-      }
-    });
+    this.checkUserRole(); // Проверяем роль пользователя
+    if (this.isAdmin) {
+      this.invoiceService.getAllInvoices().subscribe({
+        next: (data) => {
+          this.invoices = data; // Загружаем все накладные
+        },
+        error: () => {
+          alert('Ошибка загрузки накладных!');
+        }
+      });
+    } else {
+      this.invoiceService.getInvoicesByUser().subscribe({
+        next: (data) => {
+          this.invoices = data; // Загружаем накладные текущего пользователя
+        },
+        error: () => {
+          alert('Ошибка загрузки накладных!');
+        }
+      });
+    }
   }
 
   deleteInvoice(invoiceId: number): void {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrderShowDTO } from '../interfaces/OrderShowDTO';
+import {InvoiceShowDTO} from '../interfaces/InvoiceShowDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,10 @@ export class OrderService {
   // Получить все заказы
   getAllOrders(): Observable<OrderShowDTO[]> {
     return this.http.get<OrderShowDTO[]>(this.baseUrl);
+  }
+
+  getOrdersByUser(): Observable<OrderShowDTO[]> {
+    return this.http.get<OrderShowDTO[]>(`${this.baseUrl}/user`);
   }
 
   // Удалить заказ

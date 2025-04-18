@@ -13,4 +13,7 @@
   <!-- Кнопки для администраторов -->
   <button *ngIf="isAdmin && invoice?.cost === null" (click)="onChangeCost()">Рассчитать накладную</button>
   <button *ngIf="isAdmin && !invoice?.userConfirmed" (click)="onConfirmInvoice()">Подтвердить накладную</button>
+
+  <!-- Кнопка для оформления заказа, если не администратор и условия выполнены -->
+  <button *ngIf="!isAdmin && invoice?.cost !== null && invoice?.userConfirmed !== null" (click)="onCreateOrder()">Оформить заказ</button>
 </div>

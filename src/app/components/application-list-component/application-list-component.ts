@@ -40,13 +40,25 @@ export class ApplicationListComponent implements OnInit {
   }
 
   loadApplications() {
-    this.applicationService.getAllApplicationsByUserId().subscribe(data => {
-      this.applications = data;
-      this.errorMessage = ''; // Сбрасываем сообщение об ошибке при загрузке заявок
-    }, error => {
-      this.errorMessage = 'Ошибка при загрузке заявок.';
-      console.error('Error loading applications:', error);
-    });
+    if (this.isAdmin) {
+      // Если пользователь администратор, загружаем все заявки
+      this.applicationService.getAllApplications().subscribe(data => {
+        this.applications = data;
+        this.errorMessage = ''; // Сбрасываем сообщение об ошибке при загрузке заявок
+      }, error => {
+        this.errorMessage = 'Ошибка при загрузке заявок.';
+        console.error('Error loading applications:', error);
+      });
+    } else {
+      // Если пользователь не администратор, загружаем заявки по ID пользователя
+      this.applicationService.getAllApplicationsByUserId().subscribe(data => {
+        this.applications = data;
+        this.errorMessage = ''; // Сбрасываем сообщение об ошибке при загрузке заявок
+      }, error => {
+        this.errorMessage = 'Ошибка при загрузке заявок.';
+        console.error('Error loading applications:', error);
+      });
+    }
   }
 
   deleteApplication(id: number | undefined) {

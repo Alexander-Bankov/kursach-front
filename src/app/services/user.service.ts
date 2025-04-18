@@ -23,4 +23,8 @@ export class UserService {
   logout(): Observable<string> {
     return this.http.post<string>('http://localhost:8080/gruz/logout', {});
   }
+
+  createOrder(invoiceId: number): Observable<string> {
+    return this.http.post<string>(`http://localhost:8080/create-order/${invoiceId}`, {});
+  }
 }

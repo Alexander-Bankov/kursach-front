@@ -17,6 +17,10 @@ export class InvoiceService {
     return this.http.get<InvoiceShowDTO[]>(this.baseUrl);
   }
 
+  getInvoicesByUser(): Observable<InvoiceShowDTO[]> {
+    return this.http.get<InvoiceShowDTO[]>(`${this.baseUrl}/user`);
+  }
+
   // Удалить накладную
   deleteInvoice(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);

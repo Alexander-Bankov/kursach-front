@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { InvoiceShowDTO } from '../../interfaces/InvoiceShowDTO';
 import { InvoiceService } from '../../services/invoice.service';
+import { UserService } from '../../services/user.service';
 import { AdminService } from '../../services/admin.service'; // Импортируем AdminService
 import { CommonModule } from '@angular/common';
 
@@ -19,7 +20,7 @@ export class InvoiceComponent {
 
   isAdmin: boolean = false;
 
-  constructor(private invoiceService: InvoiceService, private adminService: AdminService) {
+  constructor(private invoiceService: InvoiceService, private adminService: AdminService, private userService: UserService) {
     this.checkUserRole(); // Проверяем роль пользователя
   }
 
@@ -59,6 +60,21 @@ export class InvoiceComponent {
         },
         error: () => {
           alert('Ошибка при изменении стоимости накладной!');
+        }
+      });
+    } else {
+      console.error('Ошибка: invoice не определен.'); // Лог для отладки
+    }
+  }
+  onCreateOrder() {
+    if (this.invoice) {
+      console.log('Оформление заказа для накладной с ID:', this.invoice.invoiceId); // Лог для отладки
+      this.userService.createOrder(this.invoice.invoiceId).subscribe({
+        next: () => {
+          alert('Заказ оформлен!');
+        },
+        error: () => {
+          alert('Ошибка оформления заказа!');
         }
       });
     } else {
