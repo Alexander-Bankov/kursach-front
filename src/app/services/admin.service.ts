@@ -29,6 +29,10 @@ export class AdminService {
     });
   }
 
+  changeOrderStatus(id: number, status: string): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/change-status-order/${id}/${status}`, {});
+  }
+
   // Найти пользователя по email
   getUserByEmail(email: string): Observable<UserShowDTO[]> {
     return this.http.get<UserShowDTO[]>(

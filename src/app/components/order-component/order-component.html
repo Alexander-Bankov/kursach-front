@@ -2,5 +2,17 @@
   <p>Дата начала исполнения: {{ order?.dateStartExecution | date: 'dd/MM/yyyy HH:mm' }}</p>
   <p>Дата завершения исполнения: {{ order?.endDateExecution | date: 'dd/MM/yyyy HH:mm' }}</p>
   <p>Статус: {{ order?.status }}</p>
-  <button (click)="onDelete()">Удалить</button>
+
+  <div *ngIf="isAdmin && !(order?.status === 'DELIVERED' || order?.status === 'REJECTED')">
+    <select [(ngModel)]="selectedStatus">
+      <option value="" disabled selected>Выберите статус</option>
+      <option value="TRANSIT">TRANSIT</option>
+      <option value="DELIVERED">DELIVERED</option>
+      <option value="NOT_DELIVERED">NOT DELIVERED</option>
+      <option value="REJECTED">REJECTED</option>
+    </select>
+    <button (click)="onChangeStatus()">Изменить статус</button>
+  </div>
+
+  <!-- <button (click)="onDelete()">Удалить</button> -->
 </div>

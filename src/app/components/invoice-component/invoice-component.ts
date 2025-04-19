@@ -70,15 +70,32 @@ export class InvoiceComponent {
     if (this.invoice) {
       console.log('Оформление заказа для накладной с ID:', this.invoice.invoiceId); // Лог для отладки
       this.userService.createOrder(this.invoice.invoiceId).subscribe({
-        next: () => {
-          alert('Заказ оформлен!');
+        next: (response) => {
+          alert(response); // Здесь вы должны увидеть "Заказ оформлен!"
         },
-        error: () => {
-          alert('Ошибка оформления заказа!');
+        error: (error) => {
+          alert('Ошибка оформления заказа!'); // Это сообщение будет показано, если возникла ошибка
+          console.error('Ошибка:', error); // Логирование ошибки для отладки
         }
       });
     } else {
       console.error('Ошибка: invoice не определен.'); // Лог для отладки
+    }
+  }
+
+  onCancelAll() {
+    if (this.invoice) {
+      console.log('Отмена всех операций для накладной с ID:', this.invoice.invoiceId);
+      this.userService.cancelAll(this.invoice.invoiceId).subscribe({
+        next: () => {
+          alert('Все операции успешно отменены!');
+        },
+        error: () => {
+          alert('Ошибка при отмене всех операций!');
+        }
+      });
+    } else {
+      console.error('Ошибка: invoice не определен.');
     }
   }
 }

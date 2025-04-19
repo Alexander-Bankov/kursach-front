@@ -25,6 +25,10 @@ export class UserService {
   }
 
   createOrder(invoiceId: number): Observable<string> {
-    return this.http.post<string>(`http://localhost:8080/create-order/${invoiceId}`, {});
+    return this.http.post<string>(`${this.baseUrl}/create-order/${invoiceId}`, {});
+  }
+
+  cancelAll(invoiceId: number): Observable<string> {
+    return this.http.post<string>(`${this.baseUrl}/cancel-all/${invoiceId}`, {});
   }
 }
